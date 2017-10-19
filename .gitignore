@@ -1,0 +1,30 @@
+.idea/
+
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ignore everything in the root except the "wp-content" directory.
+/*
+!wp-content/
+#track
+!.gitignore
+!README.md
+
+# ignore everything in the "wp-content" directory, except:
+# "themes" directory
+wp-content/*
+!wp-content/themes/
+
+#ignore everything in the themes directory, except:
+wp-content/themes/*
+!wp-content/themes/learning-curve/
+
+
+
