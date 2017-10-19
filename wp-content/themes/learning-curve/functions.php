@@ -94,6 +94,15 @@ function genesis_sample_enqueue_scripts_styles() {
 		CHILD_THEME_VERSION,
 		true
 	);
+
+	$asset_file = '/js/hidden-footer.js';
+	wp_enqueue_script(
+		'learning-curve-hidden-footer',
+		get_stylesheet_directory_uri() . $asset_file,
+		[ 'jquery' ],
+		'1.0.0',
+		true );
+
 }
 
 // Define our responsive menu settings.
@@ -219,3 +228,33 @@ remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+//////////////////////////////////////
+// Hidden Footer Begin //////////////
+
+//* Remove standard Genesis footer
+remove_action( 'genesis_footer', 'genesis_do_footer' );
+remove_action( 'genesis_footer', 'genesis_footer_markup_open', 5 );
+remove_action( 'genesis_footer', 'genesis_footer_markup_close', 15 );
+
+//* Register widget area for hidden footer.
+genesis_register_sidebar( [
+	'id'          => 'hidden-footer',
+	'name'        => __( 'Hidden Footer', 'learning-curve' ),
+	'description' => __( 'The widget for the hidden footer ', 'learning-curve' ),
+] );
+
+add_action( 'genesis_after', 'learning_curve_footer_widget' );
+/**
+ * Add markup for hidden footer widget area.
+ */
+function learning_curve_footer_widget() {
+	genesis_widget_area( 'hidden-footer', [
+		'before' => '<footer class="site-footer hidden-footer widget-area" itemscope itemtype="https://schema.org/WPFooter"><div class="wrap">',
+		'after'  => '</div></footer',
+	] );
+}
+
+add_filter('widget_text', 'do_shortcode');
+
+

@@ -1590,8 +1590,8 @@ form.comment-form {
 ---------------------------------------------------------------------------------------------------- */
 
 .site-footer {
-	background-color: #fff;
-	border-top: 1px solid #eee;
+	color: #fff;
+	background-color: #141B28;
 	font-size: 16px;
 	font-size: 1.6rem;
 	line-height: 1;
@@ -1601,6 +1601,18 @@ form.comment-form {
 
 .site-footer p {
 	margin-bottom: 0;
+}
+
+.site-footer .lobster {
+	font-size: x-large;
+}
+
+.hidden-footer {
+	font-size: large;
+}
+
+.hidden-footer a:hover {
+	color: #fff;
 }
 
 
@@ -1684,6 +1696,22 @@ form.comment-form {
 
 	.footer-widgets-1 {
 		margin-right: 30px;
+	}
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+	.site-container.added-hidden-footer-margin {
+		position: relative;
+		z-index: 1;
+	}
+
+	.site-container.added-hidden-footer-margin + .hidden-footer {
+		bottom: 0;
+		left: 0;
+		position: fixed;
+		right: 0;
 	}
 
 }
